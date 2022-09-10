@@ -1,0 +1,46 @@
+{
+	"id": "0eb4f4b5-732f-9bca-937d-e7bdbd652491",
+	"name": "hibernate-validation-postman-collection",
+	"description": "",
+	"order": [
+		"f2661f70-ddd1-8d65-0710-d83b68d29c3d"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1662821970680,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "f2661f70-ddd1-8d65-0710-d83b68d29c3d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/api/users",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "0eb4f4b5-732f-9bca-937d-e7bdbd652491",
+			"data": [],
+			"dataMode": "raw",
+			"name": "save user",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1662822129923,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\n\t\"name\" : \"abhi\",\n\t\"username\" : \"abhi123\",\n\t\"password\" : \"1234567890\"\n}"
+		}
+	]
+}
