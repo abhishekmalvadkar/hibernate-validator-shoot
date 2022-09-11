@@ -4,24 +4,28 @@ import static java.util.stream.Collectors.toList;
 
 import java.util.List;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.shoot.dto.ErrorResponseDTO;
 
+/**
+ * @author ABHISHEK MALVADKAR
+ * Note : This is the second way to handle bean validation violation at single place
+ * 		  use anyone of these two way , I have committed both way for reference only
+ *        you can put this MethodArgumentNotValidException exception in your global exception handler class
+ * @see {@link GlobalValidationHandlerFirstWay}*
+ */
+
 @ControllerAdvice
-public class GlobalValidationHandler extends ResponseEntityExceptionHandler {
+public class GlobalValidationHandlerSecondWay {
 	
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<ErrorResponseDTO> handleBeanValidationViolation(MethodArgumentNotValidException ex) {
 		List<ObjectError> errors = ex.getAllErrors();
 		List<String> errorMessages = errors.stream()
 			  .map(ObjectError::getDefaultMessage)
@@ -34,5 +38,5 @@ public class GlobalValidationHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(errorResponseDTO, HttpStatus.OK);
 		
 	}
-	
+
 }
